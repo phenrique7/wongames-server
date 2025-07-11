@@ -1,8 +1,4 @@
-import {
-  registerDecorator,
-  ValidationOptions,
-  ValidationArguments,
-} from "class-validator";
+import { registerDecorator, ValidationOptions, ValidationArguments } from "class-validator";
 
 /**
  * Custom validator to check if a password meets the following criteria:

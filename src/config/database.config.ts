@@ -11,9 +11,7 @@ import type { TypeOrmModuleOptions } from "@nestjs/typeorm";
  * 6. Logging: Enabled in development for debugging
  */
 
-export const databaseConfig = (
-  configService: ConfigService,
-): TypeOrmModuleOptions => ({
+export const databaseConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: "postgres",
   host: configService.get<string>("DB_HOST"),
   port: configService.get<number>("DB_PORT"),
@@ -24,9 +22,7 @@ export const databaseConfig = (
   synchronize: configService.get<string>("NODE_ENV") === "development",
   logging: configService.get<string>("NODE_ENV") === "development",
   ssl:
-    configService.get<string>("NODE_ENV") === "production"
-      ? { rejectUnauthorized: false }
-      : false,
+    configService.get<string>("NODE_ENV") === "production" ? { rejectUnauthorized: false } : false,
   migrations: [__dirname + "/../migrations/*{.ts,.js}"],
   migrationsRun: configService.get<string>("NODE_ENV") === "production",
   autoLoadEntities: true,
